@@ -26,7 +26,7 @@ public class DipendenteController {
     @GetMapping
     public Page<Dipendente> findAll(@RequestParam(defaultValue = "0") int page,
                                     @RequestParam(defaultValue = "10") int size,
-                                    @RequestParam(defaultValue = "id") String sortBy) {
+                                    @RequestParam(defaultValue = "idDipendente") String sortBy) {
         return this.dipendenteService.findAllDipendenti(page, size, sortBy);
     }
 

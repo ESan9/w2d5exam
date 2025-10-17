@@ -32,5 +32,5 @@ build/
 ### VS Code ###
 .vscode/
 
-#AGGIUNGERE AL GIT env
+#IGNORE env
 env.properties

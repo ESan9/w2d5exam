@@ -59,6 +59,10 @@ public class DipendenteService {
                 }
         );
 
+        this.dipendenteRepository.findByEmail(payload.email()).ifPresent(dipendente -> {
+            throw new BadRequestException("L'email " + dipendente.getEmail() + " è già registrata!");
+        });
+
         Dipendente newDipendente = new Dipendente(payload.username(), payload.nome(), payload.cognome(), payload.email());
         newDipendente.setImmagineProfilo("https://ui-avatars.com/api/?name=" + payload.nome());
 
@@ -82,6 +86,15 @@ public class DipendenteService {
                         throw new BadRequestException("L'username " + dipendente.getUsername() + " è già in uso!");
                     }
             );
+        }
+
+        if (!found.getEmail().equalsIgnoreCase(payload.email())) {
+            this.dipendenteRepository.findByEmail(payload.email()).ifPresent(dipendente -> {
+
+                if (!dipendente.getIdDipendente().equals(dipendenteId)) {
+                    throw new BadRequestException("L'email " + payload.email() + " è già registrata!");
+                }
+            });
         }
         found.setUsername(payload.username());
         found.setNome(payload.nome());
@@ -131,7 +144,7 @@ public class DipendenteService {
             Dipendente modifiedDipendente = this.dipendenteRepository.save(foundDipendente);
 
             log.info("L'avatar del dipendente con id {} è stato aggiornato correttamente. Nuovo URL: {}", dipendenteId, imageURL);
-            
+
             return modifiedDipendente;
 
         } catch (IOException e) {

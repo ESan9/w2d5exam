@@ -30,7 +30,7 @@ public class DipendenteController {
         return this.dipendenteService.findAllDipendenti(page, size, sortBy);
     }
 
-    // 2 POST http://localhost:3001/authors (+ payload) 201 CREATED
+    // 2 POST http://localhost:3001/dipendenti (+ payload) 201 CREATED
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -42,14 +42,14 @@ public class DipendenteController {
         return this.dipendenteService.saveDipendente(payload);
     }
 
-    // 3 GET http://localhost:3001/authors/{dipendenteId} 200 OK
+    // 3 GET http://localhost:3001/dipendenti/{dipendenteId} 200 OK
 
     @GetMapping("/{dipendenteId}")
     public Dipendente findById(@PathVariable UUID dipendenteId) {
         return this.dipendenteService.findById(dipendenteId);
     }
 
-    // 4 PUT http://localhost:3001/authors/{dipendenteId} + payload 200 OK
+    // 4 PUT http://localhost:3001/dipendenti/{dipendenteId} + payload 200 OK
 
     @PutMapping("/{dipendenteId}")
     public Dipendente findByIdAndUpdate(@PathVariable UUID dipendenteId, @RequestBody @Validated NewDipendenteDTO payload, BindingResult validationResult) {
@@ -60,7 +60,7 @@ public class DipendenteController {
         return this.dipendenteService.findByIdAndUpdate(dipendenteId, payload);
     }
 
-    // 5 DELETE http://localhost:3001/authors/{dipendenteId} 204 NC
+    // 5 DELETE http://localhost:3001/dipendenti/{dipendenteId} 204 NC
 
     @DeleteMapping("/{dipendenteId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -68,7 +68,7 @@ public class DipendenteController {
         this.dipendenteService.findByIdAndDelete(dipendenteId);
     }
 
-//    http://localhost:3001/dipendenti/id/avatar in body metti formdata e key value dell'immagine in locale
+//    http://localhost:3001/dipendenti/id/avatar in body metto formdata e key value dell'immagine in locale da ricordare
     // PATCH: Endpoint per l'upload dell'avatar
 
     @PatchMapping("/{dipendenteId}/avatar")

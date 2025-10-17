@@ -12,4 +12,6 @@ import java.util.UUID;
 public interface ViaggioRepository extends JpaRepository<Viaggio, UUID> {
     //    Questa per aiutarmi nel requisito
     List<Viaggio> findByDipendenteIdDipendenteAndData(UUID dipendenteId, LocalDate data);
+
+    List<Viaggio> findByDipendenteIdDipendente(UUID dipendenteId);
 }
